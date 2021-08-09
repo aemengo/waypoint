@@ -401,11 +401,16 @@ func (c *StatusCommand) FormatAppStatus(projectTarget string, appTarget string) 
 					createdTime = humanize.Time(t)
 				}
 
+				var healthStatus string
+				if dr.Health != nil {
+					healthStatus = dr.Health.HealthStatus
+				}
+
 				columns := []string{
 					dr.Type,
 					dr.Name,
 					dr.Platform,
-					dr.Health.HealthStatus,
+					healthStatus,
 					createdTime,
 				}
 
